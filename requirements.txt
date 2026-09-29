@@ -1,0 +1,9 @@
+numpy
+pandas
+scikit-learn
+joblib
+streamlit
+jupyter
+matplotlib
+seaborn
+holidays
