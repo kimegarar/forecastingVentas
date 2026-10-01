@@ -12,9 +12,9 @@ Este repositorio es un ejercicio demostrativo de ciencia de datos e IA aplicado 
 
 ## Modo de uso
 
-La app requiere que existan localmente `data/processed/inferencia_df_transformado.csv` y `models/modelo_final.joblib`. Git excluye `data/raw/`, `data/processed/` y `models/`, asi que esos artefactos no vienen incluidos en una clonacion limpia.
+El repositorio incluye los CSV sinteticos de entrada, los datasets procesados y `models/modelo_final.joblib`, asi que la app puede ejecutarse despues de clonar sin descargar artefactos aparte.
 
-Para regenerarlos hacen falta los CSV de entrada descritos en los notebooks: ejecuta primero `notebooks/entrenamiento.ipynb` y despues `notebooks/forecasting.ipynb`. Los archivos de datos no se publican en este repositorio.
+Para regenerar los artefactos, usa las versiones de `requirements.txt`, inicia Jupyter desde `notebooks/` y ejecuta primero todas las celdas de `entrenamiento.ipynb`; despues ejecuta `forecasting.ipynb`. El primero guarda `data/processed/df.csv` y `models/modelo_final.joblib`; el segundo guarda `data/processed/inferencia_df_transformado.csv`.
 
 1. Revisa el notebook de entrenamiento para entender el pipeline completo.
 2. Verifica que los CSV procesados esten disponibles en `data/processed/`.

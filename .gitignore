@@ -17,14 +17,24 @@ env/
 # Local datasets
 /data/raw/*
 !/data/raw/.gitkeep
+!/data/raw/entrenamiento/
+!/data/raw/inferencia/
+/data/raw/entrenamiento/*
+!/data/raw/entrenamiento/ventas.csv
+!/data/raw/entrenamiento/competencia.csv
+/data/raw/inferencia/*
+!/data/raw/inferencia/ventas_2025_inferencia.csv
 /data/external/*
 !/data/external/.gitkeep
 /data/processed/*
 !/data/processed/.gitkeep
+!/data/processed/df.csv
+!/data/processed/inferencia_df_transformado.csv
 
 # Trained model artifacts
 /models/*
 !/models/.gitkeep
+!/models/modelo_final.joblib
 
 # OS and editor files
 .DS_Store

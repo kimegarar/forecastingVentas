@@ -20,12 +20,14 @@ El proyecto prepara datos historicos de ventas y competencia, crea variables tem
 
 ## Inicio rapido
 
-Antes de arrancar, comprueba que estan disponibles los dos artefactos locales indicados en la seccion "Datos y artefactos locales".
+Clona el repositorio y crea el entorno reproducible:
 
-```bash
+```powershell
+git clone https://github.com/kimegarar/forecastingVentas.git
+Set-Location forecastingVentas
+conda create -n forecast python=3.11 -y
 conda activate forecast
 python -m pip install -r requirements.txt
-python -m streamlit run app/streamlit_app.py
 ```
 
 ## Como iniciar la app
@@ -73,12 +75,24 @@ La configuracion desactiva la recopilacion de estadisticas y ejecuta el servidor
 
 ## Datos y artefactos locales
 
-Git excluye los CSV de `data/raw/`, los datasets de `data/processed/` y los modelos de `models/`. Por eso, una clonacion limpia de GitHub no contiene por si sola los archivos que necesita la app. Para iniciarla deben existir localmente:
+El repositorio incluye los datos sinteticos de este ejercicio y los artefactos necesarios para usar la app:
 
+- `data/raw/entrenamiento/ventas.csv`
+- `data/raw/entrenamiento/competencia.csv`
+- `data/raw/inferencia/ventas_2025_inferencia.csv`
+- `data/processed/df.csv`
 - `data/processed/inferencia_df_transformado.csv`
 - `models/modelo_final.joblib`
 
-Para reproducir el pipeline tambien se necesitan los archivos de entrada que leen los notebooks, entre ellos `data/raw/entrenamiento/ventas.csv`, `data/raw/entrenamiento/competencia.csv` y `data/raw/inferencia/ventas_2025_inferencia.csv`. Ejecuta primero `notebooks/entrenamiento.ipynb` para preparar el esquema y guardar el modelo; luego ejecuta `notebooks/forecasting.ipynb` para transformar la inferencia de noviembre. Los datos de entrada no se publican en este repositorio.
+Para regenerar los artefactos, activa el entorno `forecast`, abre Jupyter con el directorio de trabajo `notebooks/` y ejecuta todas las celdas de `entrenamiento.ipynb`; despues ejecuta `forecasting.ipynb`. El primero vuelve a crear `df.csv` y `modelo_final.joblib`; el segundo transforma la inferencia de noviembre y recrea `inferencia_df_transformado.csv`.
+
+```powershell
+conda activate forecast
+Set-Location notebooks
+jupyter notebook
+```
+
+Los patrones de `.gitignore` permiten versionar unicamente estos CSV sinteticos y el modelo aprobado, y mantienen excluidos otros archivos de datos o modelos que se generen localmente.
 
 ## Flujo principal
 
@@ -99,4 +113,4 @@ Para reproducir el pipeline tambien se necesitan los archivos de entrada que lee
 
 ## Requisitos
 
-El proyecto usa las librerias definidas en `requirements.txt` y evita dependencias adicionales.
+`requirements.txt` fija las versiones comprobadas de las librerias para facilitar la reproduccion del modelo serializado y de los notebooks.

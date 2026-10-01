@@ -333,7 +333,7 @@ def main():
 
     st.dataframe(
         tabla_formateada,
-        use_container_width=True,
+        width="stretch",
         height=420,
     )
 
